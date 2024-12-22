@@ -1,7 +1,6 @@
 {
-  "name": "webpack-course",
-  "version": "1.0.0",
-  "description": "webpack 5 course",
+  "name": "homework-02",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "npx webpack serve --config webpack.config.dev.js",
