@@ -9,9 +9,10 @@ declare module '*.mp3' {
 }
 
 interface WeatherSoundsItem {
-	id: number;
+	id: string;
 	name: string;
 	icon: string;
 	backgroundUrl: string;
 	soundUrl: string;
+	sound?: HTMLAudioElement;
 }

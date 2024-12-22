@@ -13,19 +13,19 @@ app.innerHTML = `
 `
 
 const listWeather = [{
-	id: 0,
+	id: '0',
 	name: 'sun',
 	icon: sunIcon,
 	backgroundUrl: require('./assets/summer-bg.jpg'),
 	soundUrl: summerSound
 }, {
-	id: 1,
+	id: '1',
 	name: 'rain',
 	icon: cloudRainIcon,
 	backgroundUrl: require('./assets/rainy-bg.jpg'),
 	soundUrl: rainSound
 }, {
-	id: 2,
+	id: '2',
 	name: 'winter',
 	icon: cloudSnowIcon,
 	backgroundUrl: require('./assets/winter-bg.jpg'),
