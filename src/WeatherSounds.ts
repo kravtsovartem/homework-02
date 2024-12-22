@@ -17,9 +17,10 @@ class WeatherSounds {
 	}
 
 	Init() {
-		this.bodyStyle.backgroundImage = `url(${this.listWeather[0].backgroundUrl})`
+		this.currentWeather = this.listWeather[0]
 
 		this.render()
+		this.bodyStyle.backgroundImage = `url(${this.currentWeather.backgroundUrl})`
 	}
 
 	render() {
@@ -38,7 +39,6 @@ class WeatherSounds {
 		Array.from(listItems).forEach((item: HTMLElement) => {
 			item.addEventListener('click', (e: PointerEvent) => {
 				const elem: Element = e.currentTarget as Element
-				console.log(elem.getAttribute('data-id'))
 				this.changeWeather(elem.getAttribute('data-id'))
 			})
 		})
@@ -47,18 +47,27 @@ class WeatherSounds {
 
 	changeWeather(id: string) {
 
+		if (this.currentWeather != null) {
+			const isPlaying: boolean = !this.currentWeather.sound.paused
+
+			if (this.currentWeather.id === id && isPlaying) {
+				this.currentWeather.sound.pause()
+				return
+			}
+		}
+
+
 		this.stopAllAudio()
 
 		this.currentWeather = this.listWeather.find((item: WeatherSoundsItem) => item.id === id)
 		this.bodyStyle.backgroundImage = `url(${this.currentWeather.backgroundUrl})`
 
-
 		this.currentWeather.sound.play()
+
 	}
 
 	stopAllAudio() {
 		this.listWeather.forEach((item: WeatherSoundsItem) => {
-			item.sound.currentTime = 0
 			item.sound.pause()
 		})
 	}
