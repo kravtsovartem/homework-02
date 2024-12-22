@@ -25,8 +25,9 @@ class WeatherSounds {
 		this.render()
 		this.bodyStyle.backgroundImage = `url(${this.currentWeather.backgroundUrl})`
 
-		this.weatherSoundsIcon = document.getElementById('app__weather_sounds__icon') as HTMLImageElement
+		this.SetStyleActiveSelectedItem()
 
+		this.weatherSoundsIcon = document.getElementById('app__weather_sounds__icon') as HTMLImageElement
 		this.weatherSoundsIcon.addEventListener('click', () => {
 			if (this.currentWeather.sound.paused) {
 				this.playSound()
@@ -34,7 +35,6 @@ class WeatherSounds {
 			}
 
 			this.pauseSound()
-
 		})
 	}
 
@@ -95,6 +95,7 @@ class WeatherSounds {
 		this.bodyStyle.backgroundImage = `url(${this.currentWeather.backgroundUrl})`
 
 		this.playSound()
+		this.SetStyleActiveSelectedItem()
 	}
 
 	stopAllAudio() {
@@ -119,6 +120,18 @@ class WeatherSounds {
 	pauseSound() {
 		this.currentWeather.sound.pause()
 		this.weatherSoundsIcon.src = playIcon
+	}
+
+	SetStyleActiveSelectedItem() {		
+		const listItems = document.querySelectorAll('.weather_sound__item')
+
+		Array.from(listItems).forEach((item: HTMLElement) => {
+			if (item.getAttribute('data-id') === this.currentWeather.id) {
+				item.classList.add('active')
+			} else {
+				item.classList.remove('active')
+			}
+		})
 	}
 
 }
