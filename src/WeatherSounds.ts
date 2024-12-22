@@ -20,7 +20,7 @@ class WeatherSounds {
 	}
 
 	Init() {
-		this.currentWeather = this.listWeather[0]
+		this.currentWeather = this.listWeather[1]
 
 		this.render()
 		this.bodyStyle.backgroundImage = `url(${this.currentWeather.backgroundUrl})`
