@@ -1,4 +1,4 @@
-import { cloudRainIcon, cloudSnowIcon, pauseIcon, sunIcon } from './assets/icons'
+import { cloudRainIcon, cloudSnowIcon, sunIcon } from './assets/icons'
 import { rainSound, summerSound, winterSound } from './assets/sounds'
 import './style.scss'
 import WeatherSounds from './WeatherSounds'
@@ -32,9 +32,11 @@ const listWeather = [{
 	soundUrl: winterSound
 }]
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
+
 	const weatherSoundsElem = document.getElementById('app__weather_sounds')
 	const weatherSounds = new WeatherSounds(weatherSoundsElem, listWeather)
 	weatherSounds.Init()
+
 	document.getElementById('app__title').innerHTML = 'Weather sounds'
 });
