@@ -13,7 +13,7 @@ module.exports = {
 		assetModuleFilename: 'assets/[hash][ext][query]',
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    publicPath: "/",
+    publicPath: "./",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
