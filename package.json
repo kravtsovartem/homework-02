@@ -2,6 +2,7 @@
   "name": "homework-02",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kravtsovartem.github.io/homework-02/",
   "scripts": {
     "start": "npx webpack serve --config webpack.config.dev.js",
     "build": "npx webpack --config webpack.config.prod.js",
