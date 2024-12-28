@@ -2,13 +2,11 @@ import { playIcon, pauseIcon } from "./assets/icons"
 
 
 class WeatherSounds {
-	app: HTMLElement = null
-	listWeather: WeatherSoundsItem[] = null
-	currentWeather: WeatherSoundsItem = null
-	bodyStyle: CSSStyleDeclaration = null
-	weatherSoundsIcon: HTMLImageElement = null
+	private currentWeather: WeatherSoundsItem = null
+	private bodyStyle: CSSStyleDeclaration = null
+	private weatherSoundsIcon: HTMLImageElement = null
 
-	constructor(app: HTMLElement = null, listWeather: WeatherSoundsItem[] = null) {
+	constructor(private app: HTMLElement = null, private listWeather: WeatherSoundsItem[] = null) {
 		this.app = app
 
 		this.listWeather = listWeather.map((item: WeatherSoundsItem) => {
@@ -19,7 +17,7 @@ class WeatherSounds {
 		this.bodyStyle = document.body.style
 	}
 
-	Init() {
+	public Init() {
 		this.currentWeather = this.listWeather[1]
 
 		this.render()
@@ -38,7 +36,7 @@ class WeatherSounds {
 		})
 	}
 
-	render() {
+	private render() {
 		let templateItems = ''
 
 		this.listWeather.forEach((item: WeatherSoundsItem) => {
@@ -77,7 +75,7 @@ class WeatherSounds {
 
 	}
 
-	changeWeather(id: string) {
+	private changeWeather(id: string) {
 
 		if (this.currentWeather != null) {
 			const isPlaying: boolean = !this.currentWeather.sound.paused
@@ -98,7 +96,7 @@ class WeatherSounds {
 		this.SetStyleActiveSelectedItem()
 	}
 
-	stopAllAudio() {
+	private stopAllAudio() {
 		this.listWeather.forEach((item: WeatherSoundsItem) => {
 			item.sound.pause()
 		})
@@ -106,23 +104,23 @@ class WeatherSounds {
 		this.weatherSoundsIcon.src = playIcon
 	}
 
-	changeVolume(volume: number) {
+	private changeVolume(volume: number) {
 		this.listWeather.forEach((item: WeatherSoundsItem) => {
 			item.sound.volume = volume / 100
 		})
 	}
 
-	playSound() {
+	private playSound() {
 		this.currentWeather.sound.play()
 		this.weatherSoundsIcon.src = pauseIcon
 	}
 
-	pauseSound() {
+	private pauseSound() {
 		this.currentWeather.sound.pause()
 		this.weatherSoundsIcon.src = playIcon
 	}
 
-	SetStyleActiveSelectedItem() {		
+	private SetStyleActiveSelectedItem() {		
 		const listItems = document.querySelectorAll('.weather_sound__item')
 
 		Array.from(listItems).forEach((item: HTMLElement) => {
