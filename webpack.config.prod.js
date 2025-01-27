@@ -1,6 +1,6 @@
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const { merge } = require('webpack-merge');
 
@@ -26,11 +26,28 @@ module.exports = merge(require('./webpack.config.common.js'), {
 			}
 		},
 	},
-  plugins: [
-    new BundleAnalyzerPlugin({
-			analyzerMode: 'static',
-			openAnalyzer: false,
-			reportFilename: 'report.html'
-		})
-  ]
+	module: {
+		rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("postcss-preset-env")],
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      }
+		]
+	}
 })

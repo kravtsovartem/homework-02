@@ -1,12 +1,91 @@
-$body-color: red;
+$red-color: red;
 
 @font-face {
-	font-family: 'Roboto';
-	src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app,
+#app > div {
+  height: 100%;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-  color: $body-color;
-	background: url('./assets/rainy-bg.jpg');
+  font-family: "Roboto", sans-serif;
+  backdrop-filter: blur(10px);
+  transition-duration: 0.2s;
+}
+
+#app__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+#app__title {
+  font-size: 40px;
+  font-weight: bold;
+  color: $red-color;
+}
+
+#app__weather_sounds {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#weather_sound__items {
+  display: flex;
+  gap: 20px;
+}
+
+.weather_sound__item {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+	
+  transition-property: scale;
+  transition-duration: 0.2s;
+}
+
+.weather_sound__item.active {
+	scale: 1.1;
+}
+
+.weather_sound__item_icon {
+  width: 50px;
+}
+
+#app__weather_sounds__controls {
+  display: flex;
+  gap: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#app__weather_sounds__controls img, input {
+	cursor: pointer;
+}
+
+#app__weather_sounds__controls img {
+	width: 24px;
 }
